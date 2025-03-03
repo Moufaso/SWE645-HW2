@@ -12,11 +12,12 @@ pipeline {
          steps {
             script {
                checkout scm
+               sh 'cd StudentSurvey'
                sh 'rm -rf *.war'
-               sh 'jar -cvf StudentSurvey.war StudentSurvey/*'
-               sh 'echo ${BUILD_TIMESTAMP}'
+               sh 'jar cvf StudentSurvey.war *'
+               sh 'cd ..'
                sh 'echo "$DOCKERHUB_CRED_PSW" | docker login --username $DOCKERHUB_CRED_USR --password-stdin'
-               sh 'docker build -t moufaso/studentsurvey645:${BUILD_ID} .'
+               sh 'docker build -t moufaso/studentsurvey645:0.${BUILD_ID} .'
             }
          }
       }
@@ -24,7 +25,8 @@ pipeline {
       stage('Push Docker Image') {
          steps{
             script {
-               sh 'docker push moufaso/studentsurvey645:${BUILD_ID}'
+               sh 'docker push moufaso/studentsurvey645:0.${BUILD_ID}'
+               sh 'docker rmi moufaso/studentsurvey645:0.${BUILD_ID}'
             }
          }
       }
