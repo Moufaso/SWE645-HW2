@@ -16,7 +16,7 @@ pipeline {
                sh 'jar -cvf StudentSurvey.war StudentSurvey/*'
                sh 'echo ${BUILD_TIMESTAMP}'
                sh 'echo "$DOCKERHUB_CRED_PSW" | docker login --username $DOCKERHUB_CRED_USR --password-stdin'
-               sh 'docker build --tag moufaso/studentsurvey645:${BUILD_TIMESTAMP} .'
+               sh 'docker build --tag moufaso/studentsurvey645:latest .'
                // def customImage = docker.build("moufaso/studentsurvey645:${BUILD_TIMESTAMP}")
             }
          }
@@ -25,7 +25,7 @@ pipeline {
       stage('Push Docker Image') {
          steps{
             script {
-               sh 'docker push moufaso/studentsurvey645:${BUILD_TIMESTAMP}'
+               sh 'docker push moufaso/studentsurvey645:latest'
             }
          }
       }
