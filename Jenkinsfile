@@ -15,7 +15,7 @@ pipeline {
                sh 'rm -rf *.war'
                sh 'jar -cvf StudentSurvey.war StudentSurvey/*'
                sh 'echo ${BUILD_TIMESTAMP}'
-               sh "docker login -u $DOCKERHUB_CRED_USR -p $DOCKERHUB_CRED_PSW"
+               sh "docker login -u ${DOCKERHUB_CRED_USR} -p ${DOCKERHUB_CRED_PSW}"
                def customImage = docker.build("moufaso/studentsurvey645:${BUILD_TIMESTAMP}")
             }
          }
