@@ -31,13 +31,13 @@ pipeline {
          }
       }
 
-      stage('Deploy to rancher') {
-         steps {
-            script {
+      // stage('Deploy to rancher') {
+      //    steps {
+      //       script {
 
-            }
-         }
-      }
+      //       }
+      //    }
+      // }
    }
 
    post {
