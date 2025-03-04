@@ -10,21 +10,31 @@ pipeline {
    stages {
       stage('Build Application') {
          steps {
-            script {
-               checkout scm
+            checkout scm
+            dir('StudentSurvey') {
                sh 'jar cvf StudentSurvey.war *'
+            }
+            script {
                sh 'echo "$DOCKERHUB_CRED_PSW" | docker login --username $DOCKERHUB_CRED_USR --password-stdin'
                sh 'docker build -t moufaso/studentsurvey645:0.${BUILD_ID} .'
-               sh 'rm -rf *.war'
+               sh 'rm -rf StudentSurvey/*.war'
             }
          }
       }
 
       stage('Push Docker Image') {
-         steps{
+         steps {
             script {
                sh 'docker push moufaso/studentsurvey645:0.${BUILD_ID}'
                sh 'docker rmi moufaso/studentsurvey645:0.${BUILD_ID}'
+            }
+         }
+      }
+
+      stage('Deploy to rancher') {
+         steps {
+            script {
+
             }
          }
       }
