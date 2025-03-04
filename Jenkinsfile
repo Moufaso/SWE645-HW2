@@ -31,13 +31,13 @@ pipeline {
          }
       }
 
-      // stage('Deploy to rancher') {
-      //    steps {
-      //       script {
-
-      //       }
-      //    }
-      // }
+      stage('Deploying to rancher') {
+         steps {
+            script {
+               sh 'kubectl set image deployment/hw2-cluster-deployment container-0=moufaso/studentsurvey645:0.${BUILD_ID}'
+            }
+         }
+      }
    }
 
    post {
