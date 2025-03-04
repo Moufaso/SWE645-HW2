@@ -10,12 +10,9 @@ pipeline {
    stages {
       stage('Build Application') {
          steps {
-            checkout scm
-               dir('StudentSurvey') {
-                  sh 'jar cvf StudentSurvey.war *'
-                  mv 'StudentSurvey.war ..'
-               }
             script {
+               checkout scm
+               sh 'jar cvf StudentSurvey.war *'
                sh 'echo "$DOCKERHUB_CRED_PSW" | docker login --username $DOCKERHUB_CRED_USR --password-stdin'
                sh 'docker build -t moufaso/studentsurvey645:0.${BUILD_ID} .'
                sh 'rm -rf *.war'
