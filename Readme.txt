@@ -13,8 +13,9 @@ Steps:
    - Deployment to rancher
 
 
-Git Repository: https://github.com/Moufaso/SWE645-HW2.git
-Docker Hub Repository: https://hub.docker.com/repository/docker/moufaso/studentsurvey645
+GitHub Repository: https://github.com/Moufaso/SWE645-HW2.git
+DockerHub Repository: https://hub.docker.com/repository/docker/moufaso/studentsurvey645
 Rancher Elastic IP: http://23.21.203.160
+Jenkins IP: http://54.167.224.6:8080
 WebApp: http://54.234.182.190:32726/StudentSurvey/
    - the webapp url's ip will change everytime we restart the AWS Lab.

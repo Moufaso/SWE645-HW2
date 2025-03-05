@@ -17,7 +17,6 @@ pipeline {
             script {
                sh 'echo "$DOCKERHUB_CRED_PSW" | docker login --username $DOCKERHUB_CRED_USR --password-stdin'
                sh 'docker build -t moufaso/studentsurvey645:0.${BUILD_ID} .'
-               sh 'rm -rf StudentSurvey/*.war'
             }
          }
       }
@@ -26,7 +25,6 @@ pipeline {
          steps {
             script {
                sh 'docker push moufaso/studentsurvey645:0.${BUILD_ID}'
-               sh 'docker rmi moufaso/studentsurvey645:0.${BUILD_ID}'
             }
          }
       }
@@ -34,7 +32,7 @@ pipeline {
       stage('Deployment to rancher') {
          steps {
             script {
-               sh 'kubectl set image deployment/hw2-cluster-deployment container-0=moufaso/studentsurvey645:0.${BUILD_ID}'
+               sh 'kubectl set image deployment/hw2-deployment studentsurvey=moufaso/studentsurvey645:0.${BUILD_ID}'
             }
          }
       }
@@ -43,6 +41,9 @@ pipeline {
    post {
       always {
          echo 'Cleaning up...'
+         sh 'rm -rf StudentSurvey/*.war'
+         sh 'docker rmi moufaso/studentsurvey645:0.${BUILD_ID}'
+
       }
       success {
          echo 'Deployment successful.'

@@ -2,20 +2,19 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    deployment.kubernetes.io/revision: '9'
+    deployment.kubernetes.io/revision: '2'
     field.cattle.io/publicEndpoints: >-
-      [{"addresses":["172.31.27.65"],"port":32726,"protocol":"TCP","serviceName":"default:hw2-cluster-deployment-nodeport","allNodes":true}]
-  creationTimestamp: '2025-03-03T01:19:18Z'
-  generation: 10
+      [{"addresses":["172.31.30.193"],"port":31160,"protocol":"TCP","serviceName":"student-survey:hw2-deployment-nodeport","allNodes":true}]
+  creationTimestamp: '2025-03-05T17:53:39Z'
+  generation: 3
   labels:
-    workload.user.cattle.io/workloadselector: apps.deployment-default-hw2-cluster-deployment
+    workload.user.cattle.io/workloadselector: apps.deployment-student-survey-hw2-deployment
   managedFields:
     - apiVersion: apps/v1
       fieldsType: FieldsV1
       fieldsV1:
         f:metadata:
           f:annotations:
-            .: {}
             f:field.cattle.io/publicEndpoints: {}
           f:labels:
             .: {}
@@ -39,8 +38,9 @@ metadata:
               f:namespace: {}
             f:spec:
               f:containers:
-                k:{"name":"container-0"}:
+                k:{"name":"studentsurvey"}:
                   .: {}
+                  f:image: {}
                   f:imagePullPolicy: {}
                   f:name: {}
                   f:ports:
@@ -66,24 +66,13 @@ metadata:
               f:terminationGracePeriodSeconds: {}
       manager: agent
       operation: Update
-      time: '2025-03-04T16:55:20Z'
-    - apiVersion: apps/v1
-      fieldsType: FieldsV1
-      fieldsV1:
-        f:spec:
-          f:template:
-            f:spec:
-              f:containers:
-                k:{"name":"container-0"}:
-                  f:image: {}
-      manager: kubectl-set
-      operation: Update
-      time: '2025-03-04T17:14:01Z'
+      time: '2025-03-05T17:54:53Z'
     - apiVersion: apps/v1
       fieldsType: FieldsV1
       fieldsV1:
         f:metadata:
           f:annotations:
+            .: {}
             f:deployment.kubernetes.io/revision: {}
         f:status:
           f:availableReplicas: {}
@@ -112,18 +101,18 @@ metadata:
       manager: kube-controller-manager
       operation: Update
       subresource: status
-      time: '2025-03-04T17:14:08Z'
-  name: hw2-cluster-deployment
-  namespace: default
-  resourceVersion: '171973'
-  uid: c0f3f43c-5b9d-4e20-b450-aeed033601f7
+      time: '2025-03-05T17:54:59Z'
+  name: hw2-deployment
+  namespace: student-survey
+  resourceVersion: '13001'
+  uid: ff52ab53-e980-47bf-82ba-32fd71135643
 spec:
   progressDeadlineSeconds: 600
   replicas: 3
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      workload.user.cattle.io/workloadselector: apps.deployment-default-hw2-cluster-deployment
+      workload.user.cattle.io/workloadselector: apps.deployment-student-survey-hw2-deployment
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -133,13 +122,13 @@ spec:
     metadata:
       creationTimestamp: null
       labels:
-        workload.user.cattle.io/workloadselector: apps.deployment-default-hw2-cluster-deployment
-      namespace: default
+        workload.user.cattle.io/workloadselector: apps.deployment-student-survey-hw2-deployment
+      namespace: student-survey
     spec:
       containers:
         - image: moufaso/studentsurvey645:0.1
           imagePullPolicy: Always
-          name: container-0
+          name: studentsurvey
           ports:
             - containerPort: 8080
               name: nodeport
@@ -160,21 +149,19 @@ spec:
 status:
   availableReplicas: 3
   conditions:
-    - lastTransitionTime: '2025-03-03T16:40:20Z'
-      lastUpdateTime: '2025-03-03T16:40:20Z'
+    - lastTransitionTime: '2025-03-05T17:54:59Z'
+      lastUpdateTime: '2025-03-05T17:54:59Z'
       message: Deployment has minimum availability.
       reason: MinimumReplicasAvailable
       status: 'True'
       type: Available
-    - lastTransitionTime: '2025-03-03T01:19:18Z'
-      lastUpdateTime: '2025-03-04T17:14:08Z'
-      message: >-
-        ReplicaSet "hw2-cluster-deployment-78db88bc76" has successfully
-        progressed.
+    - lastTransitionTime: '2025-03-05T17:53:39Z'
+      lastUpdateTime: '2025-03-05T17:54:59Z'
+      message: ReplicaSet "hw2-deployment-dd665fb98" has successfully progressed.
       reason: NewReplicaSetAvailable
       status: 'True'
       type: Progressing
-  observedGeneration: 10
+  observedGeneration: 3
   readyReplicas: 3
   replicas: 3
   updatedReplicas: 3
