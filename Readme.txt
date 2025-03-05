@@ -2,13 +2,13 @@ HW2 Documentation
 Saman Hosseini
 
 Steps:
-1. Created Manger EC2 instance for rancher and jenkins with elastic IP: 23.21.203.160
-   - Installed: Docker, Rancher, JDK17, Jenkins, Kubectl
+1. Created Manger EC2 instance for rancher and Jenkins with elastic IP: 23.21.203.160
+   - Installed: Docker, Rancher, JDK17, Jenkins, kubectl
 2. Created Worker EC2 instance for running nodes.
    -Installed: Docker
 3. Created k8s-cluster on rancher and deployed hw2-deployment with nodeport service.
-4. Created Jenkins pipline with 3 steps:
-   - Build Application (tagged each biuld with the BUILD_ID)
+4. Created Jenkins pipeline with 3 steps:
+   - Build Application (tagged each build with the BUILD_ID)
    - Push Docker Image
    - Deployment to rancher
 
@@ -17,3 +17,4 @@ DockerHub Repository: https://hub.docker.com/repository/docker/moufaso/studentsu
 Rancher: http://23.21.203.160
 Jenkins: http://23.21.203.160:8080
 Student Survey: http://54.88.140.236:31160/StudentSurvey/
+Homepage: http://shossei-swe645-hw1.s3-website-us-east-1.amazonaws.com
