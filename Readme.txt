@@ -26,5 +26,5 @@ GitHub Repository: https://github.com/Moufaso/SWE645-HW2.git
 DockerHub Repository: https://hub.docker.com/repository/docker/moufaso/studentsurvey645
 Rancher: http://23.21.203.160
 Jenkins: http://23.21.203.160:8080
-Student Survey: http://54.88.140.236:31160/StudentSurvey/
+Student Survey: http://54.163.50.136:31160/StudentSurvey/
 Homepage: http://shossei-swe645-hw1.s3-website-us-east-1.amazonaws.com
