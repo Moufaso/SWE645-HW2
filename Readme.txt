@@ -7,7 +7,7 @@ Steps:
 2. Created Worker EC2 instance for running nodes.
    -Installed: Docker
 3. Created k8s-cluster on rancher and deployed hw2-deployment with nodeport service.
-4. Created the Jenkinsfile with 3 steps:
+4. Created Jenkins pipline with 3 steps:
    - Build Application (tagged each biuld with the BUILD_ID)
    - Push Docker Image
    - Deployment to rancher
