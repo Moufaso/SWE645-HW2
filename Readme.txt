@@ -6,8 +6,18 @@ Steps:
    - Installed: Docker, Rancher, JDK17, Jenkins, kubectl
 2. Created Worker EC2 instance for running nodes.
    -Installed: Docker
-3. Created k8s-cluster on rancher and deployed hw2-deployment with nodeport service.
-4. Created Jenkins pipeline with 3 steps:
+3. Created security group with inbound rules for the following ports:
+   - 22, 443, 80, 8080, 30000 - 32767 
+4. Logged in to rancher:
+   - Created k8s-cluster
+   - Added Worker instance as a node to the cluster
+   - Created SWE645 project and student-survey namespace
+   - Created hw2-deployment with 3 replicas of the studentsurvey645 image.
+   - Created nodeport to be able to connect to the pods.
+5. Inside the Manager EC2 instance added jenkins user to the docker group so jenkins can create docker images:
+   - sudo usermod -a -G docker jenkins
+   - Restart jenkins
+6. Created Jenkins pipeline with 3 steps inside the Jenkinsfile:
    - Build Application (tagged each build with the BUILD_ID)
    - Push Docker Image
    - Deployment to rancher
