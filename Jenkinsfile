@@ -43,7 +43,6 @@ pipeline {
          echo 'Cleaning up...'
          sh 'rm -rf StudentSurvey/*.war'
          sh 'docker rmi moufaso/studentsurvey645:0.${BUILD_ID}'
-
       }
       success {
          echo 'Deployment successful.'
